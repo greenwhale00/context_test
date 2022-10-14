@@ -1,27 +1,20 @@
-import React, { useState } from 'react'
+import React, { createContext, useState } from 'react'
+import Sub from './Sub'
+import './dark.scss'
 
-const Thedeepsub = () => {
-  return <>Thedeepsub</>
-}
-
-
-
-const Deepsub = () => {
-  return <Thedeepsub />
-}
-
-const Sub = () => {
-  return <>
-    <Deepsub />
-    sub
-  </>
-}
+const DarkTheme = createContext();
+export { DarkTheme }
 
 const App = () => {
-  const [state, setState] = useState("혜림");
-
+  const [dark, setDark] = useState(false);
   return (
-    <Sub />
+    <div className={`App ${dark ? 'on' : ''}`}>
+      <DarkTheme.Provider value={{ dark, setDark }}>
+        <Sub />
+      </DarkTheme.Provider>
+    </div>
+
+
   )
 }
 
